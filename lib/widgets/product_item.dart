@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/product_details_screen.dart';
 
 class ProductItem extends StatelessWidget {
   final String id;
@@ -25,10 +26,16 @@ class ProductItem extends StatelessWidget {
             ),
             backgroundColor: Colors.black38,
           ),
-          child: Image.network(
-            imageUrl,
-            alignment: Alignment.center,
-            fit: BoxFit.cover,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(ProductDetailsScreen.routeName, arguments: id);
+            },
+            child: Image.network(
+              imageUrl,
+              alignment: Alignment.center,
+              fit: BoxFit.cover,
+            ),
           )),
     );
   }
