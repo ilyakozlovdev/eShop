@@ -13,7 +13,17 @@ class _MainLayoutState extends State<MainLayout> {
     ProducrsOverviewScreen(),
     Center(
       child: Text(
-        'Index 1: Search page',
+        'Categories',
+      ),
+    ),
+    Center(
+      child: Text(
+        'Shopping Cart',
+      ),
+    ),
+    Center(
+      child: Text(
+        'Profile',
       ),
     )
   ];
@@ -35,7 +45,11 @@ class _MainLayoutState extends State<MainLayout> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), title: Text('Home')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.search), title: Text('Search'))
+                icon: Icon(Icons.category), title: Text('Categories')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart), title: Text('Cart')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person), title: Text('Profile'))
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
