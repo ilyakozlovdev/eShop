@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/product.dart';
+import '../providers/products_provider.dart';
 import '../widgets/product_item.dart';
 
 class HorizontalProductList extends StatelessWidget {
-  final List<Product> products;
   final String title;
 
-  HorizontalProductList({this.products, this.title});
+  HorizontalProductList({this.title});
 
   @override
   Widget build(BuildContext context) {
+    final productsData = Provider.of<ProductsProvider>(context);
+    final products = productsData.items;
+    print(products);
+
     final mediaQuery = MediaQuery.of(context);
     final availableHeigh = mediaQuery.size.height;
 
@@ -18,7 +23,7 @@ class HorizontalProductList extends StatelessWidget {
         Container(
           width: double.infinity,
           child: Container(
-            margin: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 5),
+            margin: EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 10),
             child: Text(
               title,
               textAlign: TextAlign.left,
@@ -28,15 +33,18 @@ class HorizontalProductList extends StatelessWidget {
         ),
         Container(
           width: double.infinity,
-          height: availableHeigh * 0.35,
+          height: availableHeigh * 0.33,
+          decoration: BoxDecoration(
+              color: Colors.black,
+              boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black26)]),
           child: GridView.builder(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 2 / 3,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10),
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8),
             itemCount: products.length,
             itemBuilder: (ctx, idx) => ProductItem(
               id: products[idx].id,
