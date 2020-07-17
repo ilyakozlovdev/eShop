@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/product.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import '../widgets/image_carousel.dart';
 import '../widgets/horizontal_product_list.dart';
 
 class ProducrsOverviewScreen extends StatelessWidget {
@@ -9,14 +10,8 @@ class ProducrsOverviewScreen extends StatelessWidget {
     return ListView(
       children: [
         Container(
-          height: mediaQuery.size.height * 0.25,
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(0.2))
-          ]),
-          child: Image.network(
-            'https://icdn2.digitaltrends.com/image/digitaltrends/apple-macbook-pro-16-ry-11.jpg',
-            fit: BoxFit.cover,
-          ),
+          width: double.infinity,
+          child: ImageCarousel(),
         ),
         HorizontalProductList(
           title: 'For Home',
