@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/product.dart';
 import '../providers/products_provider.dart';
 import '../widgets/product_item.dart';
 
@@ -46,10 +45,9 @@ class HorizontalProductList extends StatelessWidget {
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8),
             itemCount: products.length,
-            itemBuilder: (ctx, idx) => ProductItem(
-              id: products[idx].id,
-              title: products[idx].title,
-              imageUrl: products[idx].imageUrl,
+            itemBuilder: (ctx, idx) => ChangeNotifierProvider.value(
+              value: products[idx],
+              child: ProductItem(),
             ),
           ),
         )
