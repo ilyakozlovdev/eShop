@@ -38,7 +38,15 @@ class _MainLayoutState extends State<MainLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('eShop'),
+          title: Row(
+            children: [
+              Icon(Icons.blur_linear),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text('eShop'),
+              )
+            ],
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
