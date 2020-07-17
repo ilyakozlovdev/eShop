@@ -10,6 +10,9 @@ class ProducrsOverviewScreen extends StatelessWidget {
       children: [
         Container(
           height: mediaQuery.size.height * 0.25,
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(0.2))
+          ]),
           child: Image.network(
             'https://icdn2.digitaltrends.com/image/digitaltrends/apple-macbook-pro-16-ry-11.jpg',
             fit: BoxFit.cover,
