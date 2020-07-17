@@ -19,8 +19,14 @@ class _ImageCarousel extends State<ImageCarousel> {
       'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/computer-monitors-index-1573157429.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*'
     ];
 
-    return Column(children: [
-      CarouselSlider(
+    return Container(
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+            color: Colors.black.withOpacity(0.16),
+            blurRadius: 5,
+            offset: Offset(0, 1))
+      ]),
+      child: CarouselSlider(
         items: imgList
             .map((imageUrl) => Container(
                   child: Image.network(
@@ -40,23 +46,6 @@ class _ImageCarousel extends State<ImageCarousel> {
               });
             }),
       ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: imgList.map((url) {
-          int index = imgList.indexOf(url);
-          return Container(
-            width: 8.0,
-            height: 8.0,
-            margin: EdgeInsets.only(top: 10.0, left: 2.0, right: 2.0),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: _current == index
-                  ? Color.fromRGBO(0, 0, 0, 0.9)
-                  : Color.fromRGBO(0, 0, 0, 0.4),
-            ),
-          );
-        }).toList(),
-      ),
-    ]);
+    );
   }
 }
