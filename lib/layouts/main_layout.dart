@@ -1,3 +1,4 @@
+import 'package:eShop/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/products_overview_screen.dart';
 
@@ -21,11 +22,7 @@ class _MainLayoutState extends State<MainLayout> {
         'Shopping Cart',
       ),
     ),
-    Center(
-      child: Text(
-        'Profile',
-      ),
-    )
+    ProfileScreen()
   ];
 
   void _onItemTapped(int index) {
