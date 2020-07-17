@@ -13,7 +13,7 @@ class _MainLayoutState extends State<MainLayout> {
     ProducrsOverviewScreen(),
     Center(
       child: Text(
-        'Categories',
+        'Search Screen',
       ),
     ),
     Center(
@@ -38,6 +38,12 @@ class _MainLayoutState extends State<MainLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: Icon(Icons.more_vert),
+              onPressed: () => null,
+            )
+          ],
           title: Row(
             children: [
               Icon(Icons.blur_linear),
@@ -53,7 +59,7 @@ class _MainLayoutState extends State<MainLayout> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), title: Text('Home')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.category), title: Text('Categories')),
+                icon: Icon(Icons.search), title: Text('Search')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_cart), title: Text('Cart')),
             BottomNavigationBarItem(
