@@ -12,7 +12,6 @@ class HorizontalProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     final productsData = Provider.of<ProductsProvider>(context);
     final products = productsData.items;
-    print(products);
 
     final mediaQuery = MediaQuery.of(context);
     final availableHeigh = mediaQuery.size.height;
