@@ -45,8 +45,8 @@ class HorizontalProductList extends StatelessWidget {
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8),
             itemCount: products.length,
-            itemBuilder: (ctx, idx) => ChangeNotifierProvider.value(
-              value: products[idx],
+            itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+              value: products[i],
               child: ProductItem(),
             ),
           ),
