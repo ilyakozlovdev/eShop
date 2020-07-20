@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final linkStyle = TextStyle(color: Colors.white, fontSize: 16);
+  final linkStyle = TextStyle(
+      color: Colors.white, fontSize: 16, decoration: TextDecoration.underline);
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +20,24 @@ class ProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Login',
-              style: linkStyle,
+            InkWell(
+              child: Text(
+                'Login',
+                style: linkStyle,
+              ),
+              onTap: () => print('Login'),
             ),
             Text(
               '/',
-              style: linkStyle,
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
-            Text(
-              'Register',
-              style: linkStyle,
-            )
+            InkWell(
+              child: Text(
+                'Register',
+                style: linkStyle,
+              ),
+              onTap: () => print('Register'),
+            ),
           ],
         ),
       ),
@@ -53,21 +60,10 @@ class ProfileScreen extends StatelessWidget {
       ),
       Container(
         height: availableHeight * 0.5,
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-              child: Text(
-                'Profile',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-            SizedBox(
-              height: 10,
-              width: double.infinity,
-            ),
             ListTile(
               leading: Icon(Icons.person),
               title: Text('My profile'),
