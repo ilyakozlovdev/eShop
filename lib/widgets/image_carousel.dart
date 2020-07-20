@@ -9,6 +9,7 @@ class ImageCarousel extends StatefulWidget {
 }
 
 class _ImageCarousel extends State<ImageCarousel> {
+  // ignore: unused_field
   int _current = 0;
   final List<Map<String, Object>> imgList = [
     {
