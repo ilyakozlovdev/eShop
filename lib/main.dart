@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'layouts/main_layout.dart';
 import 'screens/product_details_screen.dart';
 import './providers/products_provider.dart';
+import './providers/cart_provider.dart';
 
 void main() {
   runApp(EShopApp());
@@ -11,8 +12,11 @@ void main() {
 class EShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (ctx) => ProductsProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (ctx) => ProductsProvider()),
+        ChangeNotifierProvider(create: (ctx) => CartProvider())
+      ],
       child: MaterialApp(
         title: 'EShop',
         theme: ThemeData(
