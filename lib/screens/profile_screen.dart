@@ -5,6 +5,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final availableHeight = MediaQuery.of(context).size.height;
+
     return ListView(children: [
       Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
@@ -48,7 +50,57 @@ class ProfileScreen extends StatelessWidget {
             )
           ],
         ),
-      )
+      ),
+      Container(
+        height: availableHeight * 0.5,
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+              child: Text(
+                'Profile',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+              width: double.infinity,
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('My profile'),
+              onTap: () => null,
+            ),
+            ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text('Favorites'),
+              onTap: () => null,
+            ),
+            ListTile(
+              leading: Icon(Icons.message),
+              title: Text('Messages'),
+              onTap: () => null,
+            ),
+            ListTile(
+              leading: Icon(Icons.local_mall),
+              title: Text('My orders'),
+              onTap: () => null,
+            ),
+            ListTile(
+              leading: Icon(Icons.headset_mic),
+              title: Text('Customer service'),
+              onTap: () => null,
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () => null,
+            ),
+          ],
+        ),
+      ),
     ]);
   }
 }
