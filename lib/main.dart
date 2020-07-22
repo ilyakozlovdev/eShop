@@ -25,11 +25,21 @@ class EShopApp extends StatelessWidget {
           fontFamily: 'Lato',
           appBarTheme: AppBarTheme(color: Colors.white),
           textTheme: TextTheme(
+              headline4: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Lato',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700),
               headline5: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Lato',
                   fontSize: 18,
-                  fontWeight: FontWeight.w700)),
+                  fontWeight: FontWeight.w700),
+              headline6: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Lato',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500)),
         ),
         home: HomePage(),
         routes: {
