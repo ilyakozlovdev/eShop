@@ -4,6 +4,7 @@ import '../screens/products_overview_screen.dart';
 import '../widgets/badge.dart';
 import 'package:eShop/providers/cart_provider.dart';
 import 'package:eShop/screens/profile_screen.dart';
+import '../screens/cart_screen.dart';
 
 class MainLayout extends StatefulWidget {
   @override
@@ -20,11 +21,7 @@ class _MainLayoutState extends State<MainLayout> {
         'Search Screen',
       ),
     ),
-    Center(
-      child: Text(
-        'Shopping Cart',
-      ),
-    ),
+    CartScreen(),
     ProfileScreen()
   ];
 
@@ -37,23 +34,6 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () => null,
-            )
-          ],
-          title: Row(
-            children: [
-              Icon(Icons.blur_linear),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text('eShop'),
-              )
-            ],
-          ),
-        ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
