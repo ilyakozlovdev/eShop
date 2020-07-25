@@ -6,26 +6,28 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final availableHeight = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () => null,
+    final appBar = AppBar(
+      actions: [
+        IconButton(
+          icon: Icon(Icons.more_vert),
+          onPressed: () => null,
+        )
+      ],
+      title: Row(
+        children: [
+          Icon(Icons.blur_linear),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text('eShop'),
           )
         ],
-        title: Row(
-          children: [
-            Icon(Icons.blur_linear),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text('eShop'),
-            )
-          ],
-        ),
       ),
+    );
+    final availableHeight =
+        MediaQuery.of(context).size.height - 80 - appBar.preferredSize.height;
+
+    return Scaffold(
+      appBar: appBar,
       body: ListView(children: [
         Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
@@ -77,39 +79,87 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
         Container(
-          height: availableHeight * 0.5,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                leading: Icon(Icons.person),
+                leading: Container(
+                  width: 24,
+                  height: double.infinity,
+                  alignment: Alignment.center,
+                  child: Icon(
+                    Icons.person,
+                    size: 30,
+                  ),
+                ),
                 title: Text('My profile'),
+                subtitle: Text('Personal data, shop data'),
                 onTap: () => null,
               ),
               ListTile(
-                leading: Icon(Icons.favorite),
+                leading: Container(
+                    width: 24,
+                    height: double.infinity,
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.favorite,
+                      size: 30,
+                    )),
                 title: Text('Favorites'),
+                subtitle: Text('Products, categories, blogs'),
                 onTap: () => null,
               ),
               ListTile(
-                leading: Icon(Icons.message),
+                leading: Container(
+                    width: 24,
+                    height: double.infinity,
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.message,
+                      size: 30,
+                    )),
                 title: Text('Messages'),
+                subtitle: Text('0 new messages'),
                 onTap: () => null,
               ),
               ListTile(
-                leading: Icon(Icons.local_mall),
+                leading: Container(
+                    width: 24,
+                    height: double.infinity,
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.local_mall,
+                      size: 30,
+                    )),
                 title: Text('My orders'),
+                subtitle: Text('Shipped, in progress'),
                 onTap: () => null,
               ),
               ListTile(
-                leading: Icon(Icons.headset_mic),
+                leading: Container(
+                    width: 24,
+                    height: double.infinity,
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.headset_mic,
+                      size: 30,
+                    )),
                 title: Text('Customer service'),
+                subtitle: Text('0 unresolved requests'),
                 onTap: () => null,
               ),
               ListTile(
-                leading: Icon(Icons.settings),
+                leading: Container(
+                    width: 24,
+                    height: double.infinity,
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.settings,
+                      size: 30,
+                    )),
                 title: Text('Settings'),
+                subtitle: Text('Notifications, theme, language'),
                 onTap: () => null,
               ),
             ],
