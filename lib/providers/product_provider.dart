@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class Product with ChangeNotifier {
+class ProductProvider with ChangeNotifier {
   final String id;
   final String title;
   final String description;
@@ -9,7 +9,7 @@ class Product with ChangeNotifier {
   bool isFavorite;
   bool isInCart;
 
-  Product(
+  ProductProvider(
       {@required this.id,
       @required this.title,
       @required this.description,
