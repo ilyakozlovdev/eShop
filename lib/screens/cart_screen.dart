@@ -1,4 +1,3 @@
-import 'package:eShop/providers/product_provider.dart';
 import 'package:eShop/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +24,6 @@ class CartScreen extends StatelessWidget {
         ],
       ),
     );
-
-    final screenHeigh =
-        MediaQuery.of(context).size.height - appBar.preferredSize.height - 80;
 
     final cart = Provider.of<CartProvider>(context);
     final products = Provider.of<ProductsProvider>(context);
@@ -100,102 +96,105 @@ class CartScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: appBar,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.only(left: 15),
-            alignment: Alignment.centerLeft,
-            height: screenHeigh * 0.05,
-            width: double.infinity,
-            child: Text(
-              'Cart',
-              style: Theme.of(context).textTheme.headline4,
+      body: LayoutBuilder(
+        builder: (context, constraints) => Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 15),
+              alignment: Alignment.centerLeft,
+              height: constraints.maxHeight * 0.05,
+              width: double.infinity,
+              child: Text(
+                'Cart',
+                style: Theme.of(context).textTheme.headline4,
+              ),
             ),
-          ),
-          cart.itemCount <= 0
-              ? LimitedBox(
-                  maxHeight: screenHeigh * 0.95,
-                  child: Center(
-                    child: Text('No items in cart yet. Add some =)'),
-                  ),
-                )
-              : Column(
-                  children: [
-                    LimitedBox(
-                      maxHeight: screenHeigh * 0.85,
-                      child: ListView.builder(
-                        itemBuilder: (context, i) => listTileBuilder(
-                          id: cart.items.values.toList()[i].id,
-                          price: cart.items.values.toList()[i].price,
-                          quantity: cart.items.values.toList()[i].quantity,
-                          imageUrl: cart.items.values.toList()[i].imageUrl,
-                          title: cart.items.values.toList()[i].title,
-                        ),
-                        itemCount: cart.itemCount,
-                      ),
+            cart.itemCount <= 0
+                ? LimitedBox(
+                    maxHeight: constraints.maxHeight * 0.95,
+                    child: Center(
+                      child: Text('No items in cart yet. Add some =)'),
                     ),
-                    Container(
-                        height: screenHeigh * 0.05,
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Order now',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .caption
-                                      .copyWith(
-                                          decoration: TextDecoration.underline,
-                                          fontSize: 16),
-                                  textAlign: TextAlign.end,
-                                ),
-                              ],
-                            ),
-                          ],
-                        )),
-                    Container(
-                        height: screenHeigh * 0.05,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [
-                              Colors.blueAccent,
-                              Colors.blue,
-                            ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight)),
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    'Total: \$${cart.totalAmount.toStringAsFixed(2)}',
+                  )
+                : Column(
+                    children: [
+                      LimitedBox(
+                        maxHeight: constraints.maxHeight * 0.85,
+                        child: ListView.builder(
+                          itemBuilder: (context, i) => listTileBuilder(
+                            id: cart.items.values.toList()[i].id,
+                            price: cart.items.values.toList()[i].price,
+                            quantity: cart.items.values.toList()[i].quantity,
+                            imageUrl: cart.items.values.toList()[i].imageUrl,
+                            title: cart.items.values.toList()[i].title,
+                          ),
+                          itemCount: cart.itemCount,
+                        ),
+                      ),
+                      Container(
+                          height: constraints.maxHeight * 0.05,
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Order now',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline4
-                                        .copyWith(color: Colors.white),
+                                        .caption
+                                        .copyWith(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            fontSize: 16),
                                     textAlign: TextAlign.end,
                                   ),
-                                ),
+                                ],
+                              ),
+                            ],
+                          )),
+                      Container(
+                          height: constraints.maxHeight * 0.05,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: [
+                                Colors.blueAccent,
+                                Colors.blue,
                               ],
-                            ),
-                          ],
-                        )),
-                  ],
-                )
-        ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight)),
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    child: Text(
+                                      'Total: \$${cart.totalAmount.toStringAsFixed(2)}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4
+                                          .copyWith(color: Colors.white),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
+                    ],
+                  )
+          ],
+        ),
       ),
     );
   }
