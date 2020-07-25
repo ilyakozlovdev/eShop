@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'layouts/main_layout.dart';
 import 'screens/product_details_screen.dart';
 import './providers/products_provider.dart';
+import './providers/cart_provider.dart';
 
 void main() {
   runApp(EShopApp());
@@ -11,8 +12,11 @@ void main() {
 class EShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (ctx) => ProductsProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (ctx) => ProductsProvider()),
+        ChangeNotifierProvider(create: (ctx) => CartProvider())
+      ],
       child: MaterialApp(
         title: 'EShop',
         theme: ThemeData(
@@ -21,11 +25,21 @@ class EShopApp extends StatelessWidget {
           fontFamily: 'Lato',
           appBarTheme: AppBarTheme(color: Colors.white),
           textTheme: TextTheme(
+              headline4: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Lato',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700),
               headline5: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Lato',
                   fontSize: 18,
-                  fontWeight: FontWeight.w700)),
+                  fontWeight: FontWeight.w700),
+              headline6: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Lato',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500)),
         ),
         home: HomePage(),
         routes: {

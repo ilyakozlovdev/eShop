@@ -1,5 +1,10 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../screens/products_overview_screen.dart';
+import '../widgets/badge.dart';
+import 'package:eShop/providers/cart_provider.dart';
+import 'package:eShop/screens/profile_screen.dart';
+import '../screens/cart_screen.dart';
 
 class MainLayout extends StatefulWidget {
   @override
@@ -13,19 +18,11 @@ class _MainLayoutState extends State<MainLayout> {
     ProducrsOverviewScreen(),
     Center(
       child: Text(
-        'Categories',
+        'Search Screen',
       ),
     ),
-    Center(
-      child: Text(
-        'Shopping Cart',
-      ),
-    ),
-    Center(
-      child: Text(
-        'Profile',
-      ),
-    )
+    CartScreen(),
+    ProfileScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -37,25 +34,22 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Row(
-            children: [
-              Icon(Icons.blur_linear),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text('eShop'),
-              )
-            ],
-          ),
-        ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), title: Text('Home')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.category), title: Text('Categories')),
+                icon: Icon(Icons.search), title: Text('Search')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart), title: Text('Cart')),
+                icon: Consumer<CartProvider>(
+                  builder: (_, cart, __) => cart.itemCount > 0
+                      ? Badge(
+                          child: Icon(Icons.shopping_cart),
+                          color: Colors.amber,
+                          value: cart.itemCount.toString())
+                      : Icon(Icons.shopping_cart),
+                ),
+                title: Text('Cart')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person), title: Text('Profile'))
           ],

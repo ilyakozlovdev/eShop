@@ -1,12 +1,14 @@
+import 'package:eShop/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/product.dart';
+import '../providers/product_provider.dart';
 import '../screens/product_details_screen.dart';
 
 class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    final product = Provider.of<ProductProvider>(context);
+    final cart = Provider.of<CartProvider>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
       child: GridTile(
@@ -27,17 +29,35 @@ class ProductItem extends StatelessWidget {
                       ),
                 onPressed: () => product.toggleFavoriteStatus()),
             trailing: IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () => null,
+              icon: product.isInCart
+                  ? Icon(
+                      Icons.shopping_cart,
+                      color: Colors.amberAccent,
+                    )
+                  : Icon(Icons.add_shopping_cart),
+              onPressed: () {
+                cart.toggleItem(
+                    title: product.title,
+                    price: product.price,
+                    productId: product.id,
+                    imageUrl: product.imageUrl);
+                product.toggleInCart();
+              },
             ),
           ),
           child: Stack(children: [
-            Image.network(
-              product.imageUrl,
-              alignment: Alignment.center,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(ProductDetailsScreen.routeName,
+                    arguments: product.id);
+              },
+              child: Image.network(
+                product.imageUrl,
+                alignment: Alignment.center,
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
             Positioned(
                 bottom: 0.0,
@@ -57,14 +77,7 @@ class ProductItem extends StatelessWidget {
                     ),
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(
-                            ProductDetailsScreen.routeName,
-                            arguments: product.id);
-                      },
-                      child: null,
-                    ))),
+                    child: null)),
           ])),
     );
   }

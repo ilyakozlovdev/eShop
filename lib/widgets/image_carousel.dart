@@ -9,28 +9,38 @@ class ImageCarousel extends StatefulWidget {
 }
 
 class _ImageCarousel extends State<ImageCarousel> {
+  // ignore: unused_field
   int _current = 0;
+  final List<Map<String, Object>> imgList = [
+    {
+      'title': 'New Apple MacBook Pro 16',
+      'imageUrl':
+          'https://icdn2.digitaltrends.com/image/digitaltrends/apple-macbook-pro-16-ry-11.jpg'
+    },
+    {
+      'title': 'Dell XPS 15 - perfect working machine',
+      'imageUrl':
+          'https://i.gadgets360cdn.com/large/dell_xps_15_9500_image_notebookcheck_dell_france_1588254699768.jpg'
+    },
+    {
+      'title': 'Why 60 Hz is not enough?',
+      'imageUrl':
+          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/computer-monitors-index-1573157429.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*'
+    },
+  ];
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      imgList.forEach((item) {
+        precacheImage(NetworkImage(item['imageUrl']), context);
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, Object>> imgList = [
-      {
-        'title': 'New Apple MacBook Pro 16',
-        'imageUrl':
-            'https://icdn2.digitaltrends.com/image/digitaltrends/apple-macbook-pro-16-ry-11.jpg'
-      },
-      {
-        'title': 'Dell XPS 15 - perfect working machine',
-        'imageUrl':
-            'https://i.gadgets360cdn.com/large/dell_xps_15_9500_image_notebookcheck_dell_france_1588254699768.jpg'
-      },
-      {
-        'title': 'Why 60 Hz is not enough?',
-        'imageUrl':
-            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/computer-monitors-index-1573157429.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*'
-      },
-    ];
-
     return Container(
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
