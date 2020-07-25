@@ -1,4 +1,9 @@
+import 'package:eShop/providers/product_provider.dart';
+import 'package:eShop/providers/products_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/cart_provider.dart';
 
 class CartScreen extends StatelessWidget {
   @override
@@ -22,140 +27,156 @@ class CartScreen extends StatelessWidget {
     );
 
     final screenHeigh =
-        MediaQuery.of(context).size.height - appBar.preferredSize.height;
+        MediaQuery.of(context).size.height - appBar.preferredSize.height - 80;
 
-    final listTile = ListTile(
-      leading: Image.network(
-          'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg'),
-      title: Text('Product title'),
-      subtitle: Text('\$400'),
-      trailing: Container(
-        width: 80,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.amber,
-                  child: Text(
-                    '3',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              width: 6,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: 4,
-                ),
-                GestureDetector(
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.green,
-                  ),
-                  onTap: () => null,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                GestureDetector(
-                  child: Icon(
-                    Icons.remove,
-                    color: Colors.red,
-                  ),
-                  onTap: () => null,
-                ),
-              ],
-            ),
-          ],
+    final cart = Provider.of<CartProvider>(context);
+    final products = Provider.of<ProductsProvider>(context);
+
+    Widget listTileBuilder(
+        {@required String id,
+        @required double price,
+        @required int quantity,
+        @required String imageUrl,
+        @required String title}) {
+      final product = products.items.firstWhere((prouct) => prouct.id == id);
+
+      return Dismissible(
+        key: ValueKey(id),
+        background: Container(
+          color: Theme.of(context).errorColor,
         ),
-      ),
-    );
+        direction: DismissDirection.endToStart,
+        onDismissed: (_) {
+          cart.toggleItem(productId: id);
+          product.toggleInCart();
+        },
+        child: ListTile(
+          leading: AspectRatio(
+            aspectRatio: 1 / 1,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          title: Text(title),
+          subtitle: Text('\$$price \nQuantity: $quantity'),
+          trailing: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                height: 4,
+              ),
+              GestureDetector(
+                child: Icon(
+                  Icons.add,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  cart.incItemQuantity(id);
+                },
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              GestureDetector(
+                child: Icon(
+                  Icons.remove,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  cart.decItemQuantity(id);
+                },
+              ),
+            ],
+          ),
+          isThreeLine: true,
+          onLongPress: () => null,
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: appBar,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
+            padding: EdgeInsets.only(left: 15),
+            alignment: Alignment.centerLeft,
             height: screenHeigh * 0.05,
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Your cart',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-              ],
+            child: Text(
+              'Cart',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ),
+          LimitedBox(
+            maxHeight: screenHeigh * 0.85,
+            child: ListView.builder(
+              itemBuilder: (context, i) => listTileBuilder(
+                id: cart.items.values.toList()[i].id,
+                price: cart.items.values.toList()[i].price,
+                quantity: cart.items.values.toList()[i].quantity,
+                imageUrl: cart.items.values.toList()[i].imageUrl,
+                title: cart.items.values.toList()[i].title,
+              ),
+              itemCount: cart.itemCount,
             ),
           ),
           Container(
-            width: double.infinity,
-            height: screenHeigh * 0.7,
-            child: ListView(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Column(
-                    children: [
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                      listTile,
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            height: screenHeigh * 0.2 - 80,
-            decoration: BoxDecoration(
-              border: Border(
-                  top: BorderSide(
-                      color: Colors.black, style: BorderStyle.solid)),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+              height: screenHeigh * 0.05,
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Total',
-                        style: Theme.of(context).textTheme.headline5,
+                        'Order now',
+                        style: Theme.of(context).textTheme.caption.copyWith(
+                            decoration: TextDecoration.underline, fontSize: 16),
+                        textAlign: TextAlign.end,
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('\$1200',
-                          style: Theme.of(context).textTheme.headline4)
                     ],
                   ),
-                ),
-              ],
-            ),
-          )
+                ],
+              )),
+          Container(
+              height: screenHeigh * 0.05,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                Colors.blueAccent,
+                Colors.blue,
+              ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: Text(
+                          'Total: \$${cart.totalAmount.toStringAsFixed(2)}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4
+                              .copyWith(color: Colors.white),
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )),
         ],
       ),
     );
