@@ -90,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Icon(
                     Icons.person,
-                    size: 30,
+                    size: 26,
                   ),
                 ),
                 title: Text('My profile'),
@@ -104,7 +104,7 @@ class ProfileScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Icon(
                       Icons.favorite,
-                      size: 30,
+                      size: 26,
                     )),
                 title: Text('Favorites'),
                 subtitle: Text('Products, categories, blogs'),
@@ -117,7 +117,7 @@ class ProfileScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Icon(
                       Icons.message,
-                      size: 30,
+                      size: 26,
                     )),
                 title: Text('Messages'),
                 subtitle: Text('0 new messages'),
@@ -130,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Icon(
                       Icons.local_mall,
-                      size: 30,
+                      size: 26,
                     )),
                 title: Text('My orders'),
                 subtitle: Text('Shipped, in progress'),
@@ -143,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Icon(
                       Icons.headset_mic,
-                      size: 30,
+                      size: 26,
                     )),
                 title: Text('Customer service'),
                 subtitle: Text('0 unresolved requests'),
@@ -156,7 +156,7 @@ class ProfileScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Icon(
                       Icons.settings,
-                      size: 30,
+                      size: 26,
                     )),
                 title: Text('Settings'),
                 subtitle: Text('Notifications, theme, language'),
