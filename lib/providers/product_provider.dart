@@ -27,4 +27,9 @@ class ProductProvider with ChangeNotifier {
     isInCart = !isInCart;
     notifyListeners();
   }
+
+  void removeFromCart() {
+    isInCart = false;
+    notifyListeners();
+  }
 }
