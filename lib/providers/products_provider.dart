@@ -77,6 +77,10 @@ class ProductsProvider with ChangeNotifier {
     return _items.firstWhere((product) => product.id == id);
   }
 
+  void removeAllFromCart() {
+    _items.forEach((product) => product.isInCart = false);
+  }
+
   void addProduct() {
     // _items.add(value);
     notifyListeners();
