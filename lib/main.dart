@@ -4,6 +4,8 @@ import 'layouts/main_layout.dart';
 import 'screens/product_details_screen.dart';
 import './providers/products_provider.dart';
 import './providers/cart_provider.dart';
+import './providers/orders_provider.dart';
+import './screens/orders_screen.dart';
 
 void main() {
   runApp(EShopApp());
@@ -15,7 +17,8 @@ class EShopApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => ProductsProvider()),
-        ChangeNotifierProvider(create: (ctx) => CartProvider())
+        ChangeNotifierProvider(create: (ctx) => CartProvider()),
+        ChangeNotifierProvider(create: (ctx) => OrdersProvider())
       ],
       child: MaterialApp(
         title: 'EShop',
@@ -43,7 +46,8 @@ class EShopApp extends StatelessWidget {
         ),
         home: HomePage(),
         routes: {
-          ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen()
+          ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen(),
+          OrdersScreen.routeName: (ctx) => OrdersScreen(),
         },
       ),
     );
