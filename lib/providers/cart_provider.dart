@@ -78,4 +78,9 @@ class CartProvider with ChangeNotifier {
             title: cartItem.title));
     notifyListeners();
   }
+
+  void clear() {
+    _items = {};
+    notifyListeners();
+  }
 }
