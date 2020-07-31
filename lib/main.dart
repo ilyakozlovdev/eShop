@@ -32,6 +32,7 @@ class EShopApp extends StatelessWidget {
           accentColor: Colors.white,
           fontFamily: 'Lato',
           appBarTheme: AppBarTheme(color: Colors.white),
+          canvasColor: Colors.white,
           textTheme: TextTheme(
               headline4: TextStyle(
                   color: Colors.black,
