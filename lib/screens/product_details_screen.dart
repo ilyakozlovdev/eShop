@@ -21,7 +21,7 @@ class ProductDetailsScreen extends StatelessWidget {
           children: [
             Container(
               height: constraints.maxHeight,
-              color: Colors.black12,
+              color: Colors.transparent,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -40,10 +40,37 @@ class ProductDetailsScreen extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      Text('Description'),
-                      Text(product.description),
-                      Text('Price'),
-                      Text('\$${product.price}'),
+                      Container(
+                        width: double.infinity,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        child: Text('Description',
+                            style: Theme.of(context).textTheme.headline6),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: constraints.maxHeight * 0.2,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: ListView(
+                          children: [
+                            Text(product.description,
+                                style: Theme.of(context).textTheme.bodyText1)
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        child: Text('Price',
+                            style: Theme.of(context).textTheme.headline6),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: Text('\$${product.price}',
+                            style: Theme.of(context).textTheme.bodyText1),
+                      ),
                     ],
                   ),
                   Row(
