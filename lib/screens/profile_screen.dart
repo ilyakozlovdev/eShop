@@ -130,8 +130,8 @@ class ProfileScreen extends StatelessWidget {
                         size: 26,
                       )),
                   title: Text('My orders'),
-                  subtitle: Text('Shipped, in progress'),
-                  onTap: () => null,
+                  subtitle: Text('1 in progress'),
+                  onTap: () => Navigator.of(context).pushNamed('/orders'),
                 ),
                 ListTile(
                   leading: Container(

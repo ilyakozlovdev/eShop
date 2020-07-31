@@ -1,9 +1,12 @@
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'layouts/main_layout.dart';
 import 'screens/product_details_screen.dart';
 import './providers/products_provider.dart';
 import './providers/cart_provider.dart';
+import './providers/orders_provider.dart';
+import './screens/orders_screen.dart';
 
 void main() {
   runApp(EShopApp());
@@ -12,10 +15,15 @@ void main() {
 class EShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => ProductsProvider()),
-        ChangeNotifierProvider(create: (ctx) => CartProvider())
+        ChangeNotifierProvider(create: (ctx) => CartProvider()),
+        ChangeNotifierProvider(create: (ctx) => OrdersProvider())
       ],
       child: MaterialApp(
         title: 'EShop',
@@ -24,6 +32,7 @@ class EShopApp extends StatelessWidget {
           accentColor: Colors.white,
           fontFamily: 'Lato',
           appBarTheme: AppBarTheme(color: Colors.white),
+          canvasColor: Colors.white,
           textTheme: TextTheme(
               headline4: TextStyle(
                   color: Colors.black,
@@ -43,7 +52,8 @@ class EShopApp extends StatelessWidget {
         ),
         home: HomePage(),
         routes: {
-          ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen()
+          ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen(),
+          OrdersScreen.routeName: (ctx) => OrdersScreen(),
         },
       ),
     );

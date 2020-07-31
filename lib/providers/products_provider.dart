@@ -6,7 +6,8 @@ class ProductsProvider with ChangeNotifier {
     ProductProvider(
       id: 'p1',
       title: 'Red Shirt',
-      description: 'A red shirt - it is pretty red!',
+      description:
+          'A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red!A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! \n A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red!A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red! A red shirt - it is pretty red!',
       price: 29.99,
       imageUrl:
           'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
@@ -75,6 +76,10 @@ class ProductsProvider with ChangeNotifier {
 
   ProductProvider findById(String id) {
     return _items.firstWhere((product) => product.id == id);
+  }
+
+  void removeAllFromCart() {
+    _items.forEach((product) => product.isInCart = false);
   }
 
   void addProduct() {

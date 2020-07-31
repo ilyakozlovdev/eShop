@@ -1,3 +1,4 @@
+import 'package:eShop/providers/orders_provider.dart';
 import 'package:eShop/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,7 @@ class CartScreen extends StatelessWidget {
         @required int quantity,
         @required String imageUrl,
         @required String title}) {
-      final product = products.items.firstWhere((prouct) => prouct.id == id);
+      final product = products.findById(id);
 
       return Dismissible(
         key: ValueKey(id),
@@ -44,7 +45,7 @@ class CartScreen extends StatelessWidget {
         direction: DismissDirection.endToStart,
         onDismissed: (_) {
           cart.toggleItem(productId: id);
-          product.toggleInCart();
+          product.removeFromCart();
         },
         child: ListTile(
           leading: AspectRatio(
@@ -94,6 +95,17 @@ class CartScreen extends StatelessWidget {
       );
     }
 
+    final thanksSnackBar = SnackBar(
+      content: Text('Thank you for your order!'),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {
+          Scaffold.of(context).hideCurrentSnackBar();
+        },
+      ),
+      behavior: SnackBarBehavior.floating,
+    );
+
     return Scaffold(
       appBar: appBar,
       body: LayoutBuilder(
@@ -114,13 +126,14 @@ class CartScreen extends StatelessWidget {
                 ? LimitedBox(
                     maxHeight: constraints.maxHeight * 0.95,
                     child: Center(
-                      child: Text('No items in cart yet. Add some =)'),
+                      child:
+                          Text('There are no items in cart yet. Add some =)'),
                     ),
                   )
                 : Column(
                     children: [
                       LimitedBox(
-                        maxHeight: constraints.maxHeight * 0.85,
+                        maxHeight: constraints.maxHeight * 0.82,
                         child: ListView.builder(
                           itemBuilder: (context, i) => listTileBuilder(
                             id: cart.items.values.toList()[i].id,
@@ -133,29 +146,36 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          height: constraints.maxHeight * 0.05,
+                          height: constraints.maxHeight * 0.08,
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(horizontal: 15),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Order now',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .caption
-                                        .copyWith(
-                                            decoration:
-                                                TextDecoration.underline,
-                                            fontSize: 16),
-                                    textAlign: TextAlign.end,
-                                  ),
-                                ],
-                              ),
+                              FlatButton(
+                                onPressed: () {
+                                  Provider.of<OrdersProvider>(context,
+                                          listen: false)
+                                      .addOrder(
+                                          cartProducts:
+                                              cart.items.values.toList(),
+                                          total: cart.totalAmount);
+                                  Scaffold.of(context)
+                                      .showSnackBar(thanksSnackBar);
+                                  cart.clear();
+                                  products.removeAllFromCart();
+                                },
+                                child: Text(
+                                  'Order now',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      .copyWith(
+                                          decoration: TextDecoration.underline,
+                                          fontSize: 16),
+                                  textAlign: TextAlign.end,
+                                ),
+                              )
                             ],
                           )),
                       Container(

@@ -21,9 +21,6 @@ class SearchScreen extends StatelessWidget {
       ),
     );
 
-    final screenHeight =
-        MediaQuery.of(context).size.height - appBar.preferredSize.height - 80;
-
     return Scaffold(
       appBar: appBar,
       body: ListView(
