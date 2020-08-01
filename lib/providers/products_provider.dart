@@ -11,6 +11,7 @@ class ProductsProvider with ChangeNotifier {
       price: 29.99,
       imageUrl:
           'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+      rating: 0,
     ),
     ProductProvider(
       id: 'p2',
@@ -19,6 +20,7 @@ class ProductsProvider with ChangeNotifier {
       price: 59.99,
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+      rating: 0,
     ),
     ProductProvider(
       id: 'p3',
@@ -27,6 +29,7 @@ class ProductsProvider with ChangeNotifier {
       price: 19.99,
       imageUrl:
           'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+      rating: 0,
     ),
     ProductProvider(
       id: 'p4',
@@ -35,6 +38,7 @@ class ProductsProvider with ChangeNotifier {
       price: 49.99,
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+      rating: 0,
     ),
     ProductProvider(
       id: 'p5',
@@ -43,6 +47,7 @@ class ProductsProvider with ChangeNotifier {
       price: 29.99,
       imageUrl:
           'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+      rating: 0,
     ),
     ProductProvider(
       id: 'p6',
@@ -51,6 +56,7 @@ class ProductsProvider with ChangeNotifier {
       price: 59.99,
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+      rating: 0,
     ),
     ProductProvider(
       id: 'p7',
@@ -59,6 +65,7 @@ class ProductsProvider with ChangeNotifier {
       price: 19.99,
       imageUrl:
           'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+      rating: 0,
     ),
     ProductProvider(
       id: 'p8',
@@ -67,6 +74,7 @@ class ProductsProvider with ChangeNotifier {
       price: 49.99,
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+      rating: 0,
     ),
   ];
 
