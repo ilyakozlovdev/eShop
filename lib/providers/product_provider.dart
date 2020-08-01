@@ -6,6 +6,7 @@ class ProductProvider with ChangeNotifier {
   final String description;
   final double price;
   final String imageUrl;
+  final double rating;
   bool isFavorite;
   bool isInCart;
 
@@ -15,6 +16,7 @@ class ProductProvider with ChangeNotifier {
       @required this.description,
       @required this.price,
       @required this.imageUrl,
+      @required this.rating,
       this.isFavorite = false,
       this.isInCart = false});
 
