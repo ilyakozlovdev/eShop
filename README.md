@@ -1,3 +1,3 @@
 # eShop
 
-This is a free eShop application for flutter. Not for enterprise purposes!
+This is a eShop application build with ♥ and flutter.
