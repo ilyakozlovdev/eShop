@@ -1,10 +1,11 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../screens/products_overview_screen.dart';
-import '../widgets/badge.dart';
-import 'package:eShop/providers/cart_provider.dart';
-import 'package:eShop/screens/profile_screen.dart';
+import '../screens/profile_screen.dart';
 import '../screens/cart_screen.dart';
+import '../screens/search_screen.dart';
+import '../widgets/badge.dart';
+import '../providers/cart_provider.dart';
 
 class MainLayout extends StatefulWidget {
   @override
@@ -16,11 +17,7 @@ class _MainLayoutState extends State<MainLayout> {
 
   final List<Widget> _screens = <Widget>[
     ProducrsOverviewScreen(),
-    Center(
-      child: Text(
-        'Search Screen',
-      ),
-    ),
+    SearchScreen(),
     CartScreen(),
     ProfileScreen()
   ];
@@ -36,10 +33,8 @@ class _MainLayoutState extends State<MainLayout> {
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text('Home')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search), title: Text('Search')),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
             BottomNavigationBarItem(
                 icon: Consumer<CartProvider>(
                   builder: (_, cart, __) => cart.itemCount > 0
@@ -49,9 +44,8 @@ class _MainLayoutState extends State<MainLayout> {
                           value: cart.itemCount.toString())
                       : Icon(Icons.shopping_cart),
                 ),
-                title: Text('Cart')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), title: Text('Profile'))
+                label: 'Cart'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
