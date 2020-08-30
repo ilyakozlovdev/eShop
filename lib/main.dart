@@ -7,6 +7,7 @@ import './providers/products_provider.dart';
 import './providers/cart_provider.dart';
 import './providers/orders_provider.dart';
 import './screens/orders_screen.dart';
+import './config/routes.dart';
 
 void main() {
   runApp(EShopApp());
@@ -34,26 +35,27 @@ class EShopApp extends StatelessWidget {
           appBarTheme: AppBarTheme(color: Colors.white),
           canvasColor: Colors.white,
           textTheme: TextTheme(
-              headline4: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Lato',
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700),
-              headline5: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Lato',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700),
-              headline6: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Lato',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500)),
+            headline4: TextStyle(
+                color: Colors.black,
+                fontFamily: 'Lato',
+                fontSize: 20,
+                fontWeight: FontWeight.w700),
+            headline5: TextStyle(
+                color: Colors.black,
+                fontFamily: 'Lato',
+                fontSize: 18,
+                fontWeight: FontWeight.w700),
+            headline6: TextStyle(
+                color: Colors.black,
+                fontFamily: 'Lato',
+                fontSize: 18,
+                fontWeight: FontWeight.w500),
+          ),
         ),
         home: HomePage(),
         routes: {
-          ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen(),
-          OrdersScreen.routeName: (ctx) => OrdersScreen(),
+          AppRoutes.productDetails: (ctx) => ProductDetailsScreen(),
+          AppRoutes.ordersScreen: (ctx) => OrdersScreen(),
         },
       ),
     );
