@@ -20,7 +20,7 @@ class _MainLayoutState extends State<MainLayout> {
     ProducrsOverviewScreen(),
     SearchScreen(),
     CartScreen(),
-    ProfileScreen()
+    ProfileMenuScreen()
   ];
 
   void _onItemTapped(int index) {

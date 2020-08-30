@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../config/routes.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileMenuScreen extends StatelessWidget {
   final linkStyle = TextStyle(
       color: Colors.white, fontSize: 16, decoration: TextDecoration.underline);
 
@@ -74,7 +75,8 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Text('My profile'),
                   subtitle: Text('Personal data, shop data'),
-                  onTap: () => null,
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(AppRoutes.profileScreen),
                 ),
                 ListTile(
                   leading: Container(
@@ -87,7 +89,8 @@ class ProfileScreen extends StatelessWidget {
                       )),
                   title: Text('Favorites'),
                   subtitle: Text('Products, categories, blogs'),
-                  onTap: () => null,
+                  onTap: () => Navigator.of(context)
+                      .pushNamed(AppRoutes.favoritesScreen),
                 ),
                 ListTile(
                   leading: Container(
@@ -100,7 +103,8 @@ class ProfileScreen extends StatelessWidget {
                       )),
                   title: Text('Messages'),
                   subtitle: Text('0 new messages'),
-                  onTap: () => null,
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(AppRoutes.messagesScreen),
                 ),
                 ListTile(
                   leading: Container(
@@ -113,7 +117,8 @@ class ProfileScreen extends StatelessWidget {
                       )),
                   title: Text('My orders'),
                   subtitle: Text('1 in progress'),
-                  onTap: () => Navigator.of(context).pushNamed('/orders'),
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(AppRoutes.ordersScreen),
                 ),
                 ListTile(
                   leading: Container(
@@ -126,7 +131,8 @@ class ProfileScreen extends StatelessWidget {
                       )),
                   title: Text('Customer service'),
                   subtitle: Text('0 unresolved requests'),
-                  onTap: () => null,
+                  onTap: () => Navigator.of(context)
+                      .pushNamed(AppRoutes.customerServiceScreen),
                 ),
                 ListTile(
                   leading: Container(
@@ -139,7 +145,8 @@ class ProfileScreen extends StatelessWidget {
                       )),
                   title: Text('Settings'),
                   subtitle: Text('Notifications, theme, language'),
-                  onTap: () => null,
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(AppRoutes.settingsScreen),
                 ),
               ],
             ),
