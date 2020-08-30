@@ -6,7 +6,7 @@ import 'screens/product_details_screen.dart';
 import './providers/products_provider.dart';
 import './providers/cart_provider.dart';
 import './providers/orders_provider.dart';
-import './screens/orders_screen.dart';
+import 'screens/profile_menu/orders_screen.dart';
 import './config/routes.dart';
 
 void main() {
