@@ -171,7 +171,7 @@ class DataSearh extends SearchDelegate<String> {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
         rating: 0,
-      ),
+      )
     ];
 
     return ListView.builder(
