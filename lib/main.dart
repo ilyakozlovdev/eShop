@@ -50,6 +50,10 @@ class EShopApp extends StatelessWidget {
                 fontFamily: 'Lato',
                 fontSize: 18,
                 fontWeight: FontWeight.w500),
+            bodyText2: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.normal),
           ),
         ),
         home: HomePage(),

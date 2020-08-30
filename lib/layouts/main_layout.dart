@@ -79,7 +79,13 @@ class _MainLayoutState extends State<MainLayout> {
 class DataSearh extends SearchDelegate<String> {
   @override
   List<Widget> buildActions(BuildContext context) {
-    return [IconButton(icon: Icon(Icons.clear), onPressed: () {})];
+    return [
+      IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            query = '';
+          })
+    ];
   }
 
   @override
@@ -89,7 +95,9 @@ class DataSearh extends SearchDelegate<String> {
         icon: AnimatedIcons.menu_arrow,
         progress: transitionAnimation,
       ),
-      onPressed: () {},
+      onPressed: () {
+        close(context, null);
+      },
     );
   }
 
@@ -174,18 +182,41 @@ class DataSearh extends SearchDelegate<String> {
       )
     ];
 
+    List<ProductProvider> filteredItems = _items
+        .where(
+          (element) =>
+              element.title.toLowerCase().contains(query.toLowerCase()),
+        )
+        .toList();
+
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
         leading: Icon(Icons.shopping_bag),
-        title: Text(_items[index].title),
+        title: query.length > 0
+            ? RichText(
+                text: TextSpan(
+                  text: filteredItems[index].title.substring(0, query.length),
+                  style: Theme.of(context).textTheme.bodyText2,
+                  children: [
+                    TextSpan(
+                        text:
+                            filteredItems[index].title.substring(query.length),
+                        style: TextStyle(color: Colors.grey))
+                  ],
+                ),
+              )
+            : Text(
+                filteredItems[index].title,
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
         onTap: () {
           Navigator.of(context).pushNamed(
             '/product-details',
-            arguments: _items[index].id,
+            arguments: filteredItems[index].id,
           );
         },
       ),
-      itemCount: _items.length,
+      itemCount: filteredItems.length,
     );
   }
 }
