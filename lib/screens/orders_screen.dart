@@ -18,21 +18,6 @@ class OrdersScreen extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('My orders'),
-          bottom: TabBar(
-            indicatorColor: Colors.black,
-            unselectedLabelColor: Colors.grey,
-            tabs: [
-              Tab(
-                text: 'In progress',
-              ),
-              Tab(
-                text: 'Shipped',
-              )
-            ],
-          ),
-        ),
         body: TabBarView(
           children: [
             ListView.builder(

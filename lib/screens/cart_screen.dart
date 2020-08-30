@@ -8,24 +8,6 @@ import '../providers/cart_provider.dart';
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appBar = AppBar(
-      actions: [
-        IconButton(
-          icon: Icon(Icons.more_vert),
-          onPressed: () => null,
-        )
-      ],
-      title: Row(
-        children: [
-          Icon(Icons.blur_linear),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text('eShop'),
-          )
-        ],
-      ),
-    );
-
     final cart = Provider.of<CartProvider>(context);
     final products = Provider.of<ProductsProvider>(context);
 
@@ -107,7 +89,6 @@ class CartScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: appBar,
       body: LayoutBuilder(
         builder: (context, constraints) => Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
