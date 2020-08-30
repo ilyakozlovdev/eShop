@@ -51,11 +51,13 @@ class ProductDetailsScreen extends StatelessWidget {
                         width: double.infinity,
                         height: constraints.maxHeight * 0.2,
                         padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: ListView(
-                          children: [
-                            Text(product.description,
-                                style: Theme.of(context).textTheme.bodyText1)
-                          ],
+                        child: ClipRRect(
+                          child: ListView(
+                            children: [
+                              Text(product.description,
+                                  style: Theme.of(context).textTheme.bodyText1)
+                            ],
+                          ),
                         ),
                       ),
                       Container(

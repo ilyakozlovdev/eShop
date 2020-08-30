@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/image_carousel.dart';
-import '../widgets/horizontal_product_list.dart';
+import '../../widgets/image_carousel.dart';
+import '../../widgets/horizontal_product_list.dart';
 
 class ProducrsOverviewScreen extends StatelessWidget {
   @override

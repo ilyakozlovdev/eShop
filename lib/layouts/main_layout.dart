@@ -1,9 +1,9 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import '../screens/products_overview_screen.dart';
-import '../screens/profile_screen.dart';
-import '../screens/cart_screen.dart';
-import '../screens/search_screen.dart';
+import '../screens/home/products_overview_screen.dart';
+import '../screens/profile_menu/profile_menu_screen.dart';
+import '../screens/cart/cart_screen.dart';
+import '../screens/search/search_screen.dart';
 import '../widgets/badge.dart';
 import '../providers/cart_provider.dart';
 import '../providers/product_provider.dart';
@@ -184,8 +184,14 @@ class DataSearh extends SearchDelegate<String> {
 
     List<ProductProvider> filteredItems = _items
         .where(
-          (element) =>
-              element.title.toLowerCase().contains(query.toLowerCase()),
+          (element) => element.title.length > query.length
+              ? element.title
+                  .substring(0, query.length)
+                  .toLowerCase()
+                  .contains(query.toLowerCase().trim())
+              : element.title
+                  .toLowerCase()
+                  .contains(query.toLowerCase().trim()),
         )
         .toList();
 
@@ -195,13 +201,17 @@ class DataSearh extends SearchDelegate<String> {
         title: query.length > 0
             ? RichText(
                 text: TextSpan(
-                  text: filteredItems[index].title.substring(0, query.length),
+                  text: filteredItems[index]
+                      .title
+                      .substring(0, query.trim().length),
                   style: Theme.of(context).textTheme.bodyText2,
                   children: [
                     TextSpan(
-                        text:
-                            filteredItems[index].title.substring(query.length),
-                        style: TextStyle(color: Colors.grey))
+                      text: filteredItems[index]
+                          .title
+                          .substring(query.trim().length),
+                      style: TextStyle(color: Colors.grey),
+                    )
                   ],
                 ),
               )
