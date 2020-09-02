@@ -6,6 +6,7 @@ class AppRoutes {
   static const profileScreen = '/profile';
   static const favoritesScreen = '/favorites';
   static const messagesScreen = '/messages';
+  static const dialogScreen = '/dialog';
   static const ordersScreen = '/orders';
   static const customerServiceScreen = '/customer-service';
   static const settingsScreen = '/settings';

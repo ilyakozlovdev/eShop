@@ -1,8 +1,8 @@
+import 'package:eShop/config/routes.dart';
 import 'package:eShop/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/product_provider.dart';
-import '../screens/product_details_screen.dart';
 
 class ProductItem extends StatelessWidget {
   @override
@@ -48,8 +48,8 @@ class ProductItem extends StatelessWidget {
           child: Stack(children: [
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushNamed(ProductDetailsScreen.routeName,
-                    arguments: product.id);
+                Navigator.of(context)
+                    .pushNamed(AppRoutes.productDetails, arguments: product.id);
               },
               child: Image.network(
                 product.imageUrl,

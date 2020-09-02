@@ -5,6 +5,8 @@ import './config/routes.dart';
 import './providers/products_provider.dart';
 import './providers/cart_provider.dart';
 import './providers/orders_provider.dart';
+import './providers/dialogs_provider.dart';
+import './providers/messages_provider.dart';
 import './layouts/main_layout.dart';
 import './screens/product_details_screen.dart';
 import './screens/profile_menu/profile_screen.dart';
@@ -13,6 +15,7 @@ import './screens/profile_menu/messages_screen.dart';
 import './screens/profile_menu/orders_screen.dart';
 import './screens/profile_menu/cutomer_service_screen.dart';
 import './screens/profile_menu/settings_screen.dart';
+import './screens/profile_menu/dialog_screen.dart';
 
 void main() {
   runApp(EShopApp());
@@ -29,7 +32,9 @@ class EShopApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (ctx) => ProductsProvider()),
         ChangeNotifierProvider(create: (ctx) => CartProvider()),
-        ChangeNotifierProvider(create: (ctx) => OrdersProvider())
+        ChangeNotifierProvider(create: (ctx) => OrdersProvider()),
+        ChangeNotifierProvider(create: (ctx) => MessagesProvider()),
+        ChangeNotifierProvider(create: (ctx) => DialogsProvider()),
       ],
       child: MaterialApp(
         title: 'EShop',
@@ -69,7 +74,8 @@ class EShopApp extends StatelessWidget {
           AppRoutes.messagesScreen: (ctx) => MessagesScreen(),
           AppRoutes.ordersScreen: (ctx) => OrdersScreen(),
           AppRoutes.customerServiceScreen: (ctx) => CustomerService(),
-          AppRoutes.settingsScreen: (ctx) => SettingsScreen()
+          AppRoutes.settingsScreen: (ctx) => SettingsScreen(),
+          AppRoutes.dialogScreen: (ctx) => DialogScreen(),
         },
       ),
     );
